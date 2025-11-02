@@ -61,3 +61,11 @@ That is all; stored preferences make each run a quick confirm-and-go.
 
 With these steps, even a non-technical teammate can load the latest schedule, double-click RUN_CALENDAR.bat, and have their shifts on Google Calendar in minutes.
 
+---
+
+## 5. OAuth Links (optional)
+If Google Cloud requests a homepage or privacy policy link for the OAuth consent screen, publish the contents of the `docs/` folder with GitHub Pages:
+1. Commit these files to GitHub and enable Pages in repository settings (choose the **docs/** folder as the source).
+2. Update `docs/privacy-policy.md` with the correct effective date.
+3. Use the resulting URLs for the consent screen fields (Homepage: `/` and Privacy Policy: `/privacy-policy.html`).
+
