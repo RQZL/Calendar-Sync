@@ -17,13 +17,13 @@ from googleapiclient.errors import HttpError
 # Google Calendar API scope
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
-DEFAULT_DOCTOR_NAME = ""
+DEFAULT_USER_NAME = ""
 DEFAULT_CALENDAR_ID = 'primary'
 SETTINGS_FILENAME = 'user_settings.json'
 
 
 def load_user_settings(script_dir):
-    """Load persisted user settings (doctor name, calendar ID)."""
+    """Load persisted user settings (user name, calendar ID)."""
     settings_path = os.path.join(script_dir, SETTINGS_FILENAME)
     if os.path.exists(settings_path):
         try:
@@ -286,17 +286,17 @@ def extract_unique_names(schedule_rows):
     return sorted(seen.values(), key=lambda name: name.lower())
 
 
-def filter_shifts_by_doctor(schedule_rows, doctor_name):
-    """Filter schedule rows for the specified doctor name."""
-    doctor_name_lower = doctor_name.lower()
+def filter_shifts_by_user(schedule_rows, user_name):
+    """Filter schedule rows for the specified user name."""
+    user_name_lower = user_name.lower()
     shifts = []
 
     for shift_data in schedule_rows:
         full_name = shift_data.get('Full name', '')
-        if full_name and doctor_name_lower in str(full_name).lower():
+        if full_name and user_name_lower in str(full_name).lower():
             shifts.append(shift_data)
 
-    print(f"Found {len(shifts)} shifts for {doctor_name}")
+    print(f"Found {len(shifts)} shifts for {user_name}")
     return shifts
 
 
@@ -343,7 +343,7 @@ def select_calendar(service, previous_calendar_id=None):
 
 def prompt_manual_name(previous_name=None):
     """Prompt the user to type their name manually."""
-    fallback = previous_name or DEFAULT_DOCTOR_NAME
+    fallback = previous_name or DEFAULT_USER_NAME
     while True:
         if previous_name:
             prompt = f"Type your name as it appears in the schedule (Enter to keep '{previous_name}'): "
@@ -361,8 +361,8 @@ def prompt_manual_name(previous_name=None):
         print("Name is required. Please try again.")
 
 
-def choose_doctor_name(schedule_rows, previous_name=None):
-    """Determine which doctor name to use for this run."""
+def choose_user_name(schedule_rows, previous_name=None):
+    """Determine which user name to use for this run."""
     names = extract_unique_names(schedule_rows)
 
     if names:
@@ -661,7 +661,7 @@ def main():
     print("=" * 60)
     script_dir = os.path.dirname(os.path.abspath(__file__))
     settings = load_user_settings(script_dir)
-    last_doctor_name = settings.get('doctor_name', DEFAULT_DOCTOR_NAME)
+    last_user_name = settings.get('user_name', DEFAULT_USER_NAME)
     last_calendar_id = settings.get('calendar_id', DEFAULT_CALENDAR_ID)
 
     # Find schedule file
@@ -669,26 +669,26 @@ def main():
     if not schedule_file:
         input("\nPress Enter to exit...")
         return
-    
+
     schedule_rows = read_schedule_data(schedule_file)
     if not schedule_rows:
         print("\nNo recognizable data found in the selected schedule file.")
         input("\nPress Enter to exit...")
         return
 
-    doctor_name = choose_doctor_name(schedule_rows, previous_name=last_doctor_name)
-    shifts = filter_shifts_by_doctor(schedule_rows, doctor_name)
+    user_name = choose_user_name(schedule_rows, previous_name=last_user_name)
+    shifts = filter_shifts_by_user(schedule_rows, user_name)
 
     while not shifts:
-        print(f"\nNo shifts found for '{doctor_name}'. Please choose another name.")
-        doctor_name = choose_doctor_name(schedule_rows, previous_name=doctor_name)
-        shifts = filter_shifts_by_doctor(schedule_rows, doctor_name)
+        print(f"\nNo shifts found for '{user_name}'. Please choose another name.")
+        user_name = choose_user_name(schedule_rows, previous_name=user_name)
+        shifts = filter_shifts_by_user(schedule_rows, user_name)
 
-    settings['doctor_name'] = doctor_name
+    settings['user_name'] = user_name
     save_user_settings(script_dir, settings)
-    
+
     # Show summary
-    print(f"\nLooking for shifts assigned to: {doctor_name}")
+    print(f"\nLooking for shifts assigned to: {user_name}")
     print(f"\nFound shifts:")
     print(f"  - Total shifts: {len(shifts)}")
 

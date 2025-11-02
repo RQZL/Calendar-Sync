@@ -11,7 +11,6 @@ Run Calendar Sync converts monthly schedule spreadsheets into Google Calendar ev
 ## Requirements
 - Windows 10/11 PC with internet access.
 - Google account that can edit the destination calendar.
-- Private OAuth credentials (`credentials.json`) copied into `system/scripts` before launch.
 
 ## Support
 For questions or issues, open a GitHub issue on the project repository.

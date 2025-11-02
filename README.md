@@ -13,7 +13,7 @@ Turn the monthly schedule into Google Calendar events with one double-click. The
 **Included tools**
 - RUN_CALENDAR.bat - launches the workflow.
 - system\scripts\run-calendar-script.py - automation logic.
-- system\scripts\credentials.sample.json - template for your Google OAuth client (copy to credentials.json before first run; the real file stays out of Git).
+- system\scripts\credentials.json - Google OAuth credentials for your team.
 - system\python\... - bundled portable Python runtime.
 
 After the first run, the script writes system\scripts\user_settings.json to remember your name and calendar preferences.
@@ -21,15 +21,14 @@ After the first run, the script writes system\scripts\user_settings.json to reme
 ---
 
 ## 2. First Run
-1. If system\scripts\credentials.json is missing, copy credentials.sample.json, rename it to credentials.json, and fill in your Google OAuth client ID and secret. Keep the real file private - .gitignore already keeps it out of Git.
-2. Drop the newest schedule file into the project root (same folder as RUN_CALENDAR.bat). If multiple schedules exist, the script will let you choose one.
-3. Double-click RUN_CALENDAR.bat.
-4. When prompted, pick your name with the arrow keys or by typing the number shown. If it is not listed, choose **Enter a different name...** and type it manually. The selection is saved for next time.
-5. Review the shift summary and type yes to continue.
-6. Sign in through the browser window that appears and allow access. Tokens are cleared on each launch, so this happens every run.
-7. Choose which Google Calendar to update. The last used calendar is preselected, but you can move to another editable calendar before pressing Enter.
-8. Watch for the success message. Only events inside the schedule's date range are refreshed; older events stay put.
-9. Check Google Calendar to confirm.
+1. Drop the newest schedule file into the project root (same folder as RUN_CALENDAR.bat). If multiple schedules exist, the script will let you choose one.
+2. Double-click RUN_CALENDAR.bat.
+3. When prompted, pick your name with the arrow keys or by typing the number shown. If it is not listed, choose **Enter a different name...** and type it manually. The selection is saved for next time.
+4. Review the shift summary and type yes to continue.
+5. Sign in through the browser window that appears and allow access. Tokens are cleared on each launch, so this happens every run.
+6. Choose which Google Calendar to update. The last used calendar is preselected, but you can move to another editable calendar before pressing Enter.
+7. Watch for the success message. Only events inside the schedule's date range are refreshed; older events stay put.
+8. Check Google Calendar to confirm.
 
 ---
 
@@ -53,11 +52,8 @@ That is all; stored preferences make each run a quick confirm-and-go.
 - **Switching calendars**  
   Pick a different calendar from the list after signing in. It becomes the new default.
 
-- **Moving to another computer**  
+- **Moving to another computer**
   Copy the entire project folder to the new PC. Run RUN_CALENDAR.bat; the script will prompt for a name and calendar and rebuild user_settings.json.
-
-- **Sharing with teammates**
-  Keep the real credentials.json outside of Git. When you hand someone a copy of the folder, drop your credential file into system\scripts before zipping or sending it so they can run the workflow immediately.
 
 With these steps, anyone on your team can load the latest schedule, double-click RUN_CALENDAR.bat, and have their shifts on Google Calendar in minutes.
 
