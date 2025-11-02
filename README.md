@@ -16,7 +16,7 @@ Turn the monthly schedule into Google Calendar events with one double-click. The
 - system\scripts\credentials.sample.json - template for your Google OAuth client (copy to credentials.json before first run; the real file stays out of Git).
 - system\python\... - bundled portable Python runtime.
 
-After the first run, the script writes system\scripts\user_settings.json to remember the latest doctor name and calendar.
+After the first run, the script writes system\scripts\user_settings.json to remember your name and calendar preferences.
 
 ---
 
@@ -56,16 +56,18 @@ That is all; stored preferences make each run a quick confirm-and-go.
 - **Moving to another computer**  
   Copy the entire project folder to the new PC. Run RUN_CALENDAR.bat; the script will prompt for a name and calendar and rebuild user_settings.json.
 
-- **Sharing with teammates**  
+- **Sharing with teammates**
   Keep the real credentials.json outside of Git. When you hand someone a copy of the folder, drop your credential file into system\scripts before zipping or sending it so they can run the workflow immediately.
 
-With these steps, even a non-technical teammate can load the latest schedule, double-click RUN_CALENDAR.bat, and have their shifts on Google Calendar in minutes.
+With these steps, anyone on your team can load the latest schedule, double-click RUN_CALENDAR.bat, and have their shifts on Google Calendar in minutes.
 
 ---
 
-## 5. OAuth Links (optional)
-If Google Cloud requests a homepage or privacy policy link for the OAuth consent screen, publish the contents of the `docs/` folder with GitHub Pages:
-1. Commit these files to GitHub and enable Pages in repository settings (choose the **docs/** folder as the source).
-2. Update `docs/privacy-policy.md` with the correct effective date.
-3. Use the resulting URLs for the consent screen fields (Homepage: `/` and Privacy Policy: `/privacy-policy.html`).
+## 5. Google OAuth Setup
+When configuring your OAuth consent screen in Google Cloud Console, you'll need to provide homepage and privacy policy links. Use these GitHub Pages URLs:
+
+- **Homepage:** `https://rqzl.github.io/Calendar-Sync/`
+- **Privacy Policy:** `https://rqzl.github.io/Calendar-Sync/privacy-policy.html`
+
+These pages explain what the application does and how it handles data. The privacy policy emphasizes that all processing happens locally on the user's PC, with no data collected or stored by external services except Google Calendar.
 
