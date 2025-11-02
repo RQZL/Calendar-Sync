@@ -59,11 +59,7 @@ With these steps, anyone on your team can load the latest schedule, double-click
 
 ---
 
-## 5. Google OAuth Setup
-When configuring your OAuth consent screen in Google Cloud Console, you'll need to provide homepage and privacy policy links. Use these GitHub Pages URLs:
-
-- **Homepage:** `https://rqzl.github.io/Calendar-Sync/`
-- **Privacy Policy:** `https://rqzl.github.io/Calendar-Sync/privacy-policy.html`
-
-These pages explain what the application does and how it handles data. The privacy policy emphasizes that all processing happens locally on the user's PC, with no data collected or stored by external services except Google Calendar.
+## 5. Project Information
+- **Homepage:** https://rqzl.github.io/Calendar-Sync/
+- **Privacy Policy:** https://rqzl.github.io/Calendar-Sync/privacy-policy.html
 
