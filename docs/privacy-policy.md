@@ -1,6 +1,6 @@
 # Run Calendar Sync Privacy Policy
 
-Effective: {{DATE}}
+Effective: November 2, 2025
 
 Run Calendar Sync is a desktop utility that runs entirely on your Windows PC. It reads an Excel schedule that you provide, signs you in to Google Calendar, and creates events on the calendar you choose. The project maintainers do not collect, transmit, or store any personal information.
 
