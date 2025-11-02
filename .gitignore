@@ -1,0 +1,12 @@
+# Google OAuth secrets (do not publish)
+system/scripts/credentials.json
+system/scripts/token.json
+system/scripts/user_settings.json
+
+# Local schedule exports
+*.xls
+*.xlsx
+
+# Python build artifacts
+__pycache__/
+*.pyc
